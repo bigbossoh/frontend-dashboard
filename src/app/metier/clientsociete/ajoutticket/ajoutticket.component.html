@@ -1,0 +1,57 @@
+<h2 class="p-marg">Ajout d'un ticket</h2>
+<mat-divider></mat-divider>
+<form #f="ngForm" (ngSubmit)="onCreerTicket(f.value)">
+  <!--hidden field-->
+  <div class="invisible">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker1" name="dateDemandeTicket" ngModel type="text">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" class="p-marg">
+      <mat-label>Heure d'intervention</mat-label>
+      <input matInput placeholder="Placeholder" id="appt" name="heureDemande" ngModel type="time" min="09:00"
+        max="18:00">
+    </mat-form-field>
+  <h2>Remplir ici {{data.id}}</h2>
+    <mat-form-field appearance="fill">
+      <mat-label>clientSoc</mat-label>
+      <input matInput name="clientSoc" type="text" [(ngModel)]="data.id">
+    </mat-form-field>
+  </div>
+
+
+  <div class="align-button">
+    <mat-form-field appearance="fill">
+      <mat-label>Date d'intervention</mat-label>
+      <input matInput [matDatepicker]="picker" name="dateProgrammer" ngModel type="text" >
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <div class="ngx-timepicker-field-example timepicker-overlay timepicker-backdrop-overlay widh-pick">
+    <ngx-timepicker-field [format]="24" [defaultTime]="'23:11'" name="heureProgrammer" ngModel ></ngx-timepicker-field>
+</div>
+    <!-- <mat-form-field appearance="standard" class="p-marg">
+      <mat-label>Heure d'intervention</mat-label>
+      <input matInput placeholder="Placeholder" id="appt"  type="text" min="09:00"
+        max="18:00">
+    </mat-form-field> -->
+
+  </div>
+ 
+
+  <p>
+    <mat-form-field class="example-full-width">
+      <mat-label>Description </mat-label>
+      <textarea matInput placeholder="Ex. Donner une description suctincte..." ngModel name="descSuscinte"></textarea>
+    </mat-form-field>
+  </p>
+  <p class="p-marg-p">
+    <button class="p-marg-button" mat-raised-button color="primary" type="submit"  mat-dialog-close>Valider</button>
+    <button class="p-marg-button" mat-raised-button color="accent" mat-dialog-close type="button">Fermer</button>
+  </p>
+</form>
+

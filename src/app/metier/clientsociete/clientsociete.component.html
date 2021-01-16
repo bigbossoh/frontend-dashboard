@@ -1,0 +1,81 @@
+<table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+
+  <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+    <ng-container *ngIf="column !== 'action'; else action">
+      <ng-container *ngIf="column !== 'ouvrir'; else ouvrir">
+        <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+        <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+      </ng-container>
+    </ng-container>
+     <ng-template #nomSoc>
+      <th mat-header-cell *matHeaderCellDef>Designation</th>
+     </ng-template>
+    <ng-template #action>
+      <th mat-header-cell *matHeaderCellDef>Actions | (Tickets)</th>
+      <td mat-cell *matCellDef="let element">
+        <!-- <mat-icon (click)="onBlink(element)" class="icon bulb" [ngClass]="element.action ? 'blink_me': ''">  wb_incandescent</mat-icon> -->
+        <!-- <mat-icon (click)="element.status=!element.status" *ngIf="!element.error" class="icon playPause">
+          {{element.status ? 'play_circle_outline' : 'pause_circle_outline' }}</mat-icon> -->
+        <mat-icon *ngIf="element.error" class="error icon">error</mat-icon>
+        <div class="example-button-container">
+ <p class="p-gargin">
+  <button mat-raised-button color="primary" (click)="openTicketDialogue(element)" matBadge="{{element.tickets.length}}" matBadgePosition="after" matBadgeColor="accent">
+   Creer un Ticket
+  </button>
+</p>
+          <!-- <button mat-stroked-button color="primary" mat-raised-button matBadge="7">
+            <mat-icon>add_comment</mat-icon>
+          </button>|{{element.tickets.length}} -->
+        </div>
+ 
+      </td>
+    </ng-template>
+    <ng-template #ouvrir>
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon *ngIf="element.error" class="error icon">error</mat-icon>
+        <mat-icon (click)="expandedElement = expandedElement === element ? null : element">
+          {{expandedElement === element ? 'expand_less' : 'expand_more'}}</mat-icon>
+      </td>
+    </ng-template>
+  </ng-container>
+  <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+      <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>N Ticket</th>
+              <th>Date programmee</th>
+              <th>Heure programmee</th>
+              <th>Archive</th>
+              <th>Actions </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let l of element.tickets" align="center">
+              <td>{{l.id}}</td>
+              <td>{{l.dateProgrammer| date: 'dd/MM/yyyy'}}</td>
+              <td>{{l.heureProgrammer}}</td>
+              <td>{{l.archiver}}</td>
+              <td>
+                <button class="mag-bouton" mat-flat-button color="primary">
+                  <mat-icon> person_pin</mat-icon>Ajout Intervenant
+                </button>
+                <button class="mag-bouton" mat-flat-button color="accent">Faire un Diadnostique</button>
+                <button class="mag-bouton" mat-flat-button color="warn">Cloturer</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </td>
+  </ng-container>-->
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
+    [class.example-expanded-row]="expandedElement === element">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+</table>

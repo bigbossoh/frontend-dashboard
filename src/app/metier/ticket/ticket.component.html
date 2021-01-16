@@ -1,0 +1,27 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Employee List</h2>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Societe</th>
+          <th>Date demande</th>
+          <th>Heure demande</th>
+          <th>Archive</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let l of listTickets ">
+        <td>{{l.id}}</td>
+         <td>{{l.clientSoc}}</td>
+        <td>{{l.dateDemandeTicket}}</td>
+        <td>{{l.heureDemande}}</td>
+          <td>{{l.archiver}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
