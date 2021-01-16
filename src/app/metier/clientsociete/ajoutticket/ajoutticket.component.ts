@@ -47,7 +47,6 @@ this.host.postCreerTicket(formData)
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
         this.router.onSameUrlNavigation = 'reload';
         this.router.navigate(['/clientsociete']);
-        // this.route.navigate(['/clientsociete']);
       },
       err => {
         console.log(err);
