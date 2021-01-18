@@ -13,23 +13,26 @@ export class HostserviceService {
   public host = 'http://localhost:8183';
 
 // tslint:disable-next-line: typedef
-  getTicketProjections(tick):Observable<TicketClasse[]>{
+  getTicketProjections(tick): Observable<TicketClasse[]>{
     let url = tick._links.ticket.href.replace('{?projection}', '');
     return this.http.get<TicketClasse[]>(url + '?projection=p1');
   }
-  getListeTickets():Observable<TicketClasse[]>{
+  getListeTickets(): Observable<TicketClasse[]>{
 
-  return this.http.get<TicketClasse[]>(this.host+'/api/v1/listDesTickets')
+  return this.http.get<TicketClasse[]>(this.host + '/api/v1/listDesTickets');
 }
-  getListeClienSocietes():Observable<ClientSocieteClasse>{
+supprTicket(id): Observable<any>{
+  return this.http.delete(this.host + '/api/v1/deleteTicket/' + id, {responseType: 'text'});
+}
+  getListeClienSocietes(): Observable<ClientSocieteClasse>{
 
-  return this.http.get<ClientSocieteClasse>(this.host+'/api/v1/listClientSocie')
+  return this.http.get<ClientSocieteClasse>(this.host + '/api/v1/listClientSocie');
 }
   // tslint:disable-next-line: typedef
-  public getResource(ur):Observable<any>{
+  public getResource(ur): Observable<any>{
     return this.http.get(this.host + ur);
   }
   postCreerTicket(dataform){
-    return this.http.post(this.host +'/api/v1/creerTicket',dataform);
+    return this.http.post(this.host + '/api/v1/creerTicket', dataform);
   }
 }

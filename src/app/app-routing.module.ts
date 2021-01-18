@@ -6,6 +6,7 @@ import { PostsComponent } from './modules/posts/posts.component';
 import { TicketComponent } from './metier/ticket/ticket.component';
 import { ClientsocieteComponent } from './metier/clientsociete/clientsociete.component';
 import { TableComponent } from './exemple/table/table.component';
+import { MiseticketComponent } from './metier/clientsociete/miseticket/miseticket.component';
 
 const routes: Routes = [
   {
@@ -26,7 +27,11 @@ const routes: Routes = [
     }, {
       path: 'tableexemple',
       component: TableComponent
-    }]
+    }, {
+      path: 'updateticket',
+      component: MiseticketComponent
+    }
+  ]
   }
 ];
 

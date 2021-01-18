@@ -1,8 +1,7 @@
-<h2 class="p-marg">Ajout d'un ticket</h2>
+<h2 class="p-marg">Mise à jour du ticket </h2>
 <mat-divider></mat-divider>
-<form #f="ngForm" (ngSubmit)="onCreerTicket(f.value)">
-  <!--hidden field-->
-  <div class="invisible">
+<form #f="ngForm" (ngSubmit)="majTicket(f.value)">
+  <div>
 
     <mat-form-field appearance="fill">
       <mat-label>Choose a date</mat-label>
@@ -16,10 +15,9 @@
       <input matInput placeholder="Placeholder" id="appt" name="heureDemande" ngModel type="time" min="09:00"
         max="18:00">
     </mat-form-field>
-  <h2>Remplir ici {{data.idClientSociete}}</h2>
     <mat-form-field appearance="fill">
       <mat-label>clientSoc</mat-label>
-      <input matInput name="clientSoc" type="text" [(ngModel)]="data.idClientSociete">
+      <input matInput name="clientSoc" type="text">
     </mat-form-field>
   </div>
 
@@ -54,4 +52,3 @@
     <button class="p-marg-button" mat-raised-button color="accent" mat-dialog-close type="button">Fermer</button>
   </p>
 </form>
-

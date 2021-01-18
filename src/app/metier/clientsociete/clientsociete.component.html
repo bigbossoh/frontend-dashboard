@@ -7,9 +7,9 @@
         <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
       </ng-container>
     </ng-container>
-     <ng-template #nomSoc>
+    <ng-template #nomSoc>
       <th mat-header-cell *matHeaderCellDef>Designation</th>
-     </ng-template>
+    </ng-template>
     <ng-template #action>
       <th mat-header-cell *matHeaderCellDef>Actions | (Tickets)</th>
       <td mat-cell *matCellDef="let element">
@@ -18,16 +18,17 @@
           {{element.status ? 'play_circle_outline' : 'pause_circle_outline' }}</mat-icon> -->
         <mat-icon *ngIf="element.error" class="error icon">error</mat-icon>
         <div class="example-button-container">
- <p class="p-gargin">
-  <button mat-raised-button color="primary" (click)="openTicketDialogue(element)" matBadge="{{element.tickets.length}}" matBadgePosition="after" matBadgeColor="accent">
-   Creer un Ticket
-  </button>
-</p>
+          <p class="p-gargin">
+            <button mat-raised-button color="primary" (click)="openTicketDialogue(element)"
+              matBadge="{{element.tickets.length}}" matBadgePosition="after" matBadgeColor="accent">
+              Creer un Ticket
+            </button>
+          </p>
           <!-- <button mat-stroked-button color="primary" mat-raised-button matBadge="7">
             <mat-icon>add_comment</mat-icon>
           </button>|{{element.tickets.length}} -->
         </div>
- 
+
       </td>
     </ng-template>
     <ng-template #ouvrir>
@@ -46,10 +47,10 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>N Ticket</th>
-              <th>Date programmee</th>
-              <th>Heure programmee</th>
-              <th>Archive</th>
+              <th>N° Ticket</th>
+              <th>Date programmée</th>
+              <th>Heure programmée</th>
+              <th>En Attente</th>
               <th>Actions </th>
             </tr>
           </thead>
@@ -58,13 +59,16 @@
               <td>{{l.id}}</td>
               <td>{{l.dateProgrammer| date: 'dd/MM/yyyy'}}</td>
               <td>{{l.heureProgrammer}}</td>
-              <td>{{l.archiver}}</td>
+              <td>{{l.enAttente}}</td>
               <td>
                 <button class="mag-bouton" mat-flat-button color="primary">
                   <mat-icon> person_pin</mat-icon>Ajout Intervenant
                 </button>
                 <button class="mag-bouton" mat-flat-button color="accent">Faire un Diadnostique</button>
                 <button class="mag-bouton" mat-flat-button color="warn">Cloturer</button>
+                <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="deleteTicket(l.id)">
+                  <mat-icon>delete</mat-icon>
+                </button>
               </td>
             </tr>
           </tbody>

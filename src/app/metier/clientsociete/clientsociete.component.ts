@@ -7,6 +7,7 @@ import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { TicketClasse } from '../classes/ticketclasse';
 import { MatDialog } from '@angular/material/dialog';
 import { AjoutticketComponent } from './ajoutticket/ajoutticket.component';
+import { Router } from '@angular/router';
 
 export interface DonneeSocieteCliente {
   idClientSociete: number;
@@ -41,7 +42,7 @@ export class ClientsocieteComponent implements OnInit {
     this.hidden = !this.hidden;
   }
   // clientSociete: ClientSocieteClasse[];
-  constructor(public serviceceHost: HostserviceService, private cd: ChangeDetectorRef, public dial: MatDialog) { }
+  constructor(public serviceceHost: HostserviceService, private cd: ChangeDetectorRef, public dial: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
     this.getClient();
@@ -49,16 +50,35 @@ export class ClientsocieteComponent implements OnInit {
   }
   openTicketDialogue(item: any): void {
     console.log("Id de la ligne selectionnee", item.id);
-   this.idClientSociete=item.id
+    this.idClientSociete = item.id;
     const dailogRef = this.dial.open(AjoutticketComponent,
       {
         width: '300px', disableClose: false,
-        data: { id: this.idClientSociete }
+        data: { idClientSociete: this.idClientSociete }
       });
   }
 
+reloadData(rou){
 
+this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+this.router.onSameUrlNavigation = 'reload';
+this.router.navigate(['/'+rou]);
+}
+ // tslint:disable-next-line: typedef
+ deleteTicket(id: any){
+return this.serviceceHost.supprTicket(id)
+.subscribe(data => {
+if (data.includes('true')) {
+  alert('Suppression du ticket avec succès !');
+  this.reloadData('clientsociete');
+} else {
+  alert('Echec de la supression.');}
 
+}, err => {
+  console.log(err);
+});
+
+  }
   // tslint:disable-next-line: typedef
   getClient() {
     return this.serviceceHost.getListeClienSocietes()

@@ -12,10 +12,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatTableModule } from '@angular/material/table'
+import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ClientsocieteComponent } from './metier/clientsociete/clientsociete.component';
-import { TableComponent } from './exemple/table/table.component'
+import { TableComponent } from './exemple/table/table.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
@@ -49,9 +49,11 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MAT_DATE_LOCALE } from '@angular/material/core'
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { DatePipe } from '@angular/common';
+
+import { MiseticketComponent } from './metier/clientsociete/miseticket/miseticket.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,8 @@ import { DatePipe } from '@angular/common';
     TicketComponent,
     ClientsocieteComponent,
     TableComponent,
-    AjoutticketComponent
+    AjoutticketComponent,
+    MiseticketComponent
   ],
   imports: [
     BrowserModule,
@@ -132,7 +135,7 @@ import { DatePipe } from '@angular/common';
     NgxMaterialTimepickerModule
   ],
 
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' },DatePipe],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }, DatePipe],
   bootstrap: [AppComponent],
   entryComponents: [AjoutticketComponent]
 })
